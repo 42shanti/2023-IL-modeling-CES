@@ -14,14 +14,11 @@ print("\n")
     import PyPlot
 
 # EXPERIMENTAL DATA PATH
-    # full_file_path_x = ["C:/Users/bc_usp/My Drive (cleitonberaldo@usp.br)/usp-brainstorm/bs03-r3/bs03r3-csv/x-C5MIMTF2N.csv"] # experimental fraction
-    # full_file_path_p = ["C:/Users/bc_usp/My Drive (cleitonberaldo@usp.br)/usp-brainstorm/bs03-r3/bs03r3-csv/p-C5MIMTF2N.csv"] # experimental pressure
-
     full_file_path_x = ["C:/Users/cleiton/My Drive/usp-brainstorm/bs03-r3/bs03r3-csv/x-C5MIMTF2N.csv"] # experimental fraction
     full_file_path_p = ["C:/Users/cleiton/My Drive/usp-brainstorm/bs03-r3/bs03r3-csv/p-C5MIMTF2N.csv"] # experimental pressure
 
 # INPUT
-    x_length_1 = 25 # interval points - impacts runtime and convergence
+    x_length_1 = 50 # interval points - impacts runtime
     # numerical pitftalls can be avoided with a well defined x_length
     T1 = 313.15
     experimental_datasets = 1 # number of experimental datasets
@@ -69,7 +66,7 @@ print("\n")
     p_begin = min_exp_p*1E-02 # convert pressure from kPa to bar
     p_end = max_exp_p*1E-02 # bar
     # COMPOSITION INTERVAL CALCULATION
-        # in doubt leave it 0.0–1.0
+        # advised leaving it 0.0–1.0 unless convergence problems at limits
     x_begin = 0.0 # mole fraction
     x_end = 1.0 # mole fraction
 
@@ -94,7 +91,7 @@ print("\n")
     
     bub_1 = bubble_pressure.(model1, T1, X_1) # bubble_pressure calculate 4 things separated in 4 tuples: [1] pressure bub, [2] V_l, [3] V_v, [4] y
 
-    p_1 = [] # let's save the bubble pressure of bub_1=bubble_pressure here
+    p_1 = [] # let's save the bubble pressure [1] of bub_1=bubble_pressure here
     for i ∈ 1:x_length_1 # we want only the bubble pressure
     append!(p_1,[append!([bub_1[i][1]])]) # the bubble pressure is the first [1] of the bub_1=bubble_pressure tuple 
     end
@@ -163,11 +160,11 @@ end#@time
     PyPlot.figure(dpi=311)
 
 # PLOT MODEL
-    # 1 (4C-T1)
-    PyPlot.plot(x_1,p_1.*1E-05,label="",linestyle="solid",color="black")
+    # 1 
+    PyPlot.plot(x_1,p_1.*1E-05,label="",linestyle="solid",color="black") # convert to [bar]
 # PLOT EXPERIMENTAL
     # T1
-    PyPlot.plot(exp_x[1],exp_p[1]*1E-02,label="313.15 K",linestyle="",marker="^",color="black")
+    PyPlot.plot(exp_x[1],exp_p[1]*1E-02,label="313.15 K",linestyle="",marker="^",color="black") # convert to [bar]
     # T2
     # PyPlot.plot(exp_x[2],exp_p[2]*1E-02,label="343.15 K",linestyle="",marker="o",color="royalblue")
     # T3
