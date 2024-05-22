@@ -8,4 +8,6 @@ IL-parameter-estimation.jl - parameter estimation
 
 IL-density.jl - obtain mass density
 
-IL-bub-pressure.jl - VLE calculation
+IL-bub-pressure.jl - VLE calculation (old version - does not work on newer versions of Clapeyron.jl)
+
+IL-bub-pressure-2024-05.jl VLE calculation (new version - works perfectly as May 2024)
