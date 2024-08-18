@@ -1,4 +1,4 @@
-# 2023-scripts-chemical-engineering-science
+# 2023 Scripts - IL solubility modeling - Chemical Engineering Science
 Paper: https://doi.org/10.1016/j.ces.2023.119610
 
 # Source codes used to model the IL systems:
